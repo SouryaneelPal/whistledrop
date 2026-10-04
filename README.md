@@ -14,6 +14,7 @@ Even rate limiting needed thought: it has to recognise repeat clients without st
 - [API endpoints](#api-endpoints)
 - [How anonymity is maintained](#how-anonymity-is-maintained)
 - [Example requests and responses](#example-requests-and-responses)
+- [AI features](#ai-features)
 - [Design decisions and assumptions](#design-decisions-and-assumptions)
 - [Testing](#testing)
 - [Screenshots](#screenshots)
@@ -60,17 +61,21 @@ The API runs on `http://localhost:4000` and the interactive docs on `http://loca
 | `TRUST_PROXY` | Number of proxies in front of the app, `0` means none | `0` |
 | `SEED_MODERATOR_USERNAME` | Username of the moderator created by the seed | none |
 | `SEED_MODERATOR_PASSWORD` | Password for that moderator | none |
+| `ML_EMBEDDINGS` | `on` uses the embedding model for triage, `off` forces the TF-IDF model | `on` |
+| `TRIAGE_BUDGET_MS` | Time limit per moderator request for embedding; reports after it use TF-IDF | `1500` |
 
 ### Scripts
 
 | Command | What it does |
 |---|---|
 | `npm run dev` | Starts the server with automatic reload |
-| `npm run build` | Compiles TypeScript into `dist/` and copies the OpenAPI file |
+| `npm run build` | Compiles TypeScript into `dist/`, copies the OpenAPI file and downloads the embedding model into `.models/` |
 | `npm start` | Runs the compiled server |
 | `npm test` | Runs the full test suite |
 | `npm run seed` | Creates the first moderator from the environment variables (leaves an existing one unchanged) |
 | `npm run db:push` | Creates or updates the database tables |
+| `npm run ml:embed` | Embeds `ml/dataset.csv` with the server's embedding model, for training |
+| `npm run ml:memcheck` | Builds and starts the production server, then reports its memory use and triage speed |
 
 ## API endpoints
 
@@ -78,6 +83,7 @@ The API runs on `http://localhost:4000` and the interactive docs on `http://loca
 |---|---|---|---|
 | POST | `/api/reports` | Public | Submit an anonymous report and receive a case code |
 | GET | `/api/reports/status` | Public, `X-Case-Code` header | Check a report's status and visible updates |
+| POST | `/api/reports/check` | Public | Warn a reporter if their text may identify them (stores and logs nothing) |
 | POST | `/api/moderator/login` | Public | Sign in as a moderator and receive a token |
 | GET | `/api/moderator/reports` | Moderator | List reports, with filters, search and pagination |
 | GET | `/api/moderator/reports/{id}` | Moderator | View one report with its full update history |
@@ -324,6 +330,37 @@ curl -X POST http://localhost:4000/api/reports \
 }
 ```
 
+## AI features
+
+Both features run on the server itself. Report text is never sent to an outside AI service, because that would defeat the point of an anonymous reporting tool.
+
+### Identity-leak check for reporters
+
+`POST /api/reports/check` looks at a description before it is submitted and warns if it contains something that could identify the reporter: an email address, a phone number, "my name is ..." style phrases, social media handles or profile links, or long ID-like numbers. It only warns, and never blocks a report. It stores and logs nothing, and a privacy test checks that.
+
+It is rule-based, so it has known gaps: any 10-digit number starting with 6 to 9 counts as a phone number, "I am" followed by almost any capitalised word counts as a name (so "I am Indian" is flagged), and lowercase names, names in other scripts and non-English phrasings are missed.
+
+This turns one of the weaknesses listed above ("a reporter can name themselves in the description") into something the API actively helps with.
+
+### Category suggestion for moderators
+
+Moderators see a suggested category, with a confidence, on each report. Reporters never see it, and a test checks that.
+
+| Model | Accuracy (5-fold CV) | Macro F1 |
+|---|---|---|
+| Always guess one class (baseline) | 0.200 | 0.067 |
+| TF-IDF + logistic regression | 0.557 ± 0.044 | 0.558 ± 0.042 |
+| MiniLM sentence embeddings + logistic regression (shipped) | 0.823 ± 0.023 | 0.820 ± 0.025 |
+
+- **How it runs:** the embedding model is a quantised ONNX version of all-MiniLM-L6-v2, run inside Node with transformers.js, so there is no Python at runtime. The model is downloaded at build time, never at runtime. The quantised version scores the same as the original (0.823 vs 0.833) and uses about 240 MB of memory in total.
+- **Only confident suggestions:** a suggestion is shown only when the model is confident enough. I chose the threshold from cross-validation predictions with a fixed rule. For the embedding model that is 0.375: 78% of reports get a suggestion, and 90.6% of those are right. Below it, moderators see no category, with the reason "low confidence" and the confidence.
+- **Fallback:** if the embedding model is still loading, missing or switched off, the TF-IDF model is used instead. Each suggestion says which model produced it.
+- **Speed:** reports are embedded one at a time, with a cache and a time budget per request, so a page of reports doesn't overload a small server CPU. A first list page took about 36 ms locally and a repeat about 1.5 ms.
+
+**An experiment I rejected:** I also tried predicting urgency (low, medium, high). It scored about the same as always answering "medium", so I didn't ship it. It is documented in `ml/metrics.md`.
+
+**Honest limits:** the training set is 300 synthetic reports that I generated for this project, not real reports. Real reports are messier, so accuracy in practice will likely be lower. The full evaluation, thresholds and the steps to reproduce the models are in `ml/metrics.md` and `ml/experiments.md`.
+
 ## Design decisions and assumptions
 
 ### Decisions
@@ -369,7 +406,7 @@ I wrote the tests with Vitest and Supertest. They run against their own SQLite f
 npm test
 ```
 
-There are 61 tests across 8 files:
+There are 97 tests across 11 files:
 
 | File | What it covers |
 |---|---|
@@ -378,9 +415,12 @@ There are 61 tests across 8 files:
 | `moderator.test.ts` | Login, token checks, listing, filtering, search and pagination |
 | `workflow.test.ts` | Allowed and blocked status changes, closed reports staying closed |
 | `errors.test.ts` | The error format, bad JSON, wrong content types, oversized bodies |
-| `privacy.test.ts` | Checks that nothing identifying the reporter is stored or logged |
+| `privacy.test.ts` | Checks that nothing identifying the reporter is stored or logged, including text sent to the identity check |
 | `proxy.test.ts` | `TRUST_PROXY` behaviour behind one proxy |
 | `docs.test.ts` | `/docs` and the OpenAPI file load correctly |
+| `triage.test.ts` | Both models match scikit-learn's predictions, the confidence threshold, the TF-IDF fallback, one-at-a-time embedding, the cache and the time budget, and that reporters never see a suggestion |
+| `embedding.test.ts` | The embedding model loads only from the local folder and never downloads at runtime |
+| `leakCheck.test.ts` | Each identity-leak detector with cases it should and should not flag, and input validation |
 
 ### What I was most careful about
 
@@ -460,6 +500,8 @@ It runs on Render's free tier as a Node web service, with `NODE_ENV=production`,
 
 - **Build:** `npm ci --include=dev && npx prisma generate && npm run build`
 - **Start:** `npx prisma db push --skip-generate && npm run seed && npm start`
+
+The build also downloads the embedding model. If that download fails, the build still succeeds and the server uses the TF-IDF model instead.
 
 The start command creates the database tables, then the moderator account (the seed skips it if it already exists), then starts the server.
 

@@ -6,14 +6,17 @@
   "scripts": {
     "test": "vitest run",
     "dev": "tsx watch src/server.ts",
-    "build": "tsc && mkdir -p dist/docs && cp src/docs/openapi.yaml dist/docs/",
+    "build": "tsc && mkdir -p dist/docs && cp src/docs/openapi.yaml dist/docs/ && tsx scripts/fetchModel.ts",
     "start": "node dist/server.js",
     "seed": "tsx prisma/seed.ts",
-    "db:push": "prisma db push"
+    "db:push": "prisma db push",
+    "ml:embed": "tsx scripts/embedDataset.ts",
+    "ml:memcheck": "tsx scripts/memcheck.ts"
   },
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@huggingface/transformers": "^4.3.0",
     "@prisma/client": "^6.19.3",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
@@ -47,7 +50,9 @@
     "@prisma/engines@6.19.3": true,
     "bcrypt@6.0.0": true,
     "esbuild@0.28.2": true,
-    "@scarf/scarf": false
+    "@scarf/scarf": false,
+    "onnxruntime-node": false,
+    "protobufjs": false
   },
   "engines": {
     "node": ">=26"

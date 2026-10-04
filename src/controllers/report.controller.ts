@@ -1,5 +1,6 @@
 import { StatusUpdate } from '@prisma/client';
 import { Request, Response } from 'express';
+import { findIdentityLeaks } from '../services/leakCheck.service';
 import { createReport, findReportByCaseCode } from '../services/report.service';
 import { AppError } from '../utils/AppError';
 
@@ -30,4 +31,8 @@ export async function trackReport(req: Request, res: Response) {
     submittedAt: report.createdAt,
     updates: report.updates.map(toReporterUpdate),
   });
+}
+
+export function checkReport(req: Request, res: Response) {
+  res.json({ warnings: findIdentityLeaks(req.body.description) });
 }

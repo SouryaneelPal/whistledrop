@@ -18,8 +18,7 @@ async function trustSettingFor(trustProxy?: string) {
   return app.get('trust proxy');
 }
 
-// A tiny app with the real limiter factory (not skipped under test) and the real app's
-// trust proxy setting, allowing one request per client.
+// The real limiter factory with skipping off, allowing one request per client.
 async function requestsFrom(trustProxy: unknown, clients: string[]) {
   const app = express();
   app.set('trust proxy', trustProxy);

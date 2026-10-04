@@ -17,4 +17,8 @@ export const reportSchema = z.strictObject({
     .optional(),
 });
 
+export const checkSchema = z.strictObject({
+  description: z.string({ error: 'Must be a string' }).max(5000, 'Must be at most 5000 characters'),
+});
+
 export type ReportInput = z.infer<typeof reportSchema>;

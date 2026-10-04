@@ -9,9 +9,8 @@ export const BCRYPT_COST = 12;
 const ISSUER = 'whistledrop';
 const ROLE = 'moderator';
 
-// Unknown usernames are still checked against this hash so a failed login costs the same
-// bcrypt work either way and response time does not reveal which usernames exist. It must
-// use the same cost as real hashes, or the timing would differ again.
+// Unknown usernames are checked against this hash so response time does not reveal which
+// usernames exist. It must use the same cost as real hashes, or the timing would differ.
 const dummyHash = bcrypt.hashSync(crypto.randomBytes(32).toString('hex'), BCRYPT_COST);
 
 export async function authenticate(username: string, password: string) {

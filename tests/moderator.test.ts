@@ -134,7 +134,7 @@ describe('GET /api/moderator/reports', () => {
     expect(res.body.data.map((r: { id: string }) => r.id)).toEqual([newest.id, middle.id, old.id]);
     expect(res.body).toMatchObject({ page: 1, limit: 20, total: 3 });
     expect(Object.keys(res.body.data[0]).sort()).toEqual(
-      ['category', 'createdAt', 'descriptionPreview', 'id', 'status', 'updatedAt'],
+      ['category', 'createdAt', 'descriptionPreview', 'id', 'status', 'triage', 'updatedAt'],
     );
   });
 
@@ -219,6 +219,7 @@ describe('GET /api/moderator/reports/:id', () => {
       createdAt: expect.any(String),
       updatedAt: expect.any(String),
       updates: [{ status: 'SUBMITTED', message: 'Report received', createdAt: expect.any(String), by: null }],
+      triage: expect.objectContaining({ confidence: expect.any(Number) }),
     });
   });
 

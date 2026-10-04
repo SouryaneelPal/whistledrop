@@ -112,6 +112,32 @@ paths:
                   message: No report matches this case code
         "429":
           $ref: "#/components/responses/TooManyRequests"
+  /api/reports/check:
+    post:
+      tags: [Reporter]
+      summary: Check a draft report for details that could identify the reporter
+      description: >
+        Looks for email addresses, phone numbers, names, social media handles or
+        profile links, and ID-like numbers. It only warns: the text is not stored
+        or logged, warnings never quote it back, and POST /api/reports never
+        blocks a report because of these checks.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LeakCheckRequest"
+      responses:
+        "200":
+          description: Warnings, empty if nothing was found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LeakCheckResult"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
   /api/moderator/login:
     post:
       tags: [Moderator]
@@ -518,6 +544,8 @@ components:
         updatedAt:
           type: string
           format: date-time
+        triage:
+          $ref: "#/components/schemas/Triage"
     ReportPage:
       type: object
       properties:
@@ -570,6 +598,73 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ModeratorUpdate"
+        triage:
+          $ref: "#/components/schemas/Triage"
+    Triage:
+      type: object
+      description: >
+        Category suggestion from a small local model, computed when the report is
+        read and never stored. Moderators only; reporters never see it. When the
+        model is not confident enough, suggestedCategory is null and reason says why.
+      properties:
+        model:
+          type: string
+          enum: [embeddings, tfidf]
+          description: >
+            Which model made the suggestion. The server uses sentence embeddings once
+            they have loaded and falls back to TF-IDF while they load, if they fail,
+            or when embeddings are switched off.
+          example: embeddings
+        suggestedCategory:
+          allOf:
+            - $ref: "#/components/schemas/Category"
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+          description: Why no category is suggested, or null when one is
+          example: low confidence
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Probability of the most likely category, shown even when no category is suggested
+          example: 0.41
+        topTerms:
+          type: array
+          maxItems: 3
+          description: >
+            Words or word pairs from the text that pushed hardest toward the most
+            likely category. Only the tfidf model fills this; it is always empty for
+            embeddings.
+          items:
+            type: string
+          example: []
+    LeakCheckRequest:
+      type: object
+      additionalProperties: false
+      required: [description]
+      properties:
+        description:
+          type: string
+          maxLength: 5000
+          example: My name is Priya and you can reach me on 98765 43210.
+    LeakWarning:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [EMAIL, PHONE, NAME, SOCIAL_MEDIA, ID_NUMBER]
+        message:
+          type: string
+          example: This looks like a phone number. Remove it if you want to stay anonymous.
+    LeakCheckResult:
+      type: object
+      properties:
+        warnings:
+          type: array
+          items:
+            $ref: "#/components/schemas/LeakWarning"
     StatusChange:
       type: object
       additionalProperties: false

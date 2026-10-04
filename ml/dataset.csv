@@ -1,0 +1,301 @@
+text,category,urgency
+"The shared admin password for the payroll system is written on a sticky note on the monitor in room 4B.",SECURITY,HIGH
+"Server room door has been propped open with a chair all week.",SECURITY,HIGH
+"Our customer database export was left on a public file share link that anyone can open.",SECURITY,HIGH
+"Someone in IT keeps disabling two factor login for senior staff because they find it annoying.",SECURITY,MEDIUM
+"Badge readers on the third floor accept any card, even expired ones.",SECURITY,HIGH
+"Old laptops with client data are being thrown in the regular bin without being wiped.",SECURITY,HIGH
+"We got a phishing email pretending to be from the CEO asking for gift cards. Three people already bought them.",SECURITY,HIGH
+"The guest wifi is on the same network as the finance servers.",SECURITY,MEDIUM
+"A contractor still has VPN access even though his contract ended four months ago.",SECURITY,HIGH
+"Passwords for the vendor portal are stored in a spreadsheet on the shared drive.",SECURITY,MEDIUM
+"CCTV in the parking lot has not worked since March and nobody has fixed it.",SECURITY,MEDIUM
+"Interns were given full read access to HR records on their first day.",SECURITY,HIGH
+"There was a USB stick lying around in reception with the company logo on it. Someone plugged it into a work computer.",SECURITY,MEDIUM
+"Patient files are visible on screens facing the waiting area.",SECURITY,MEDIUM
+"The backup tapes are kept in an unlocked cabinet in the corridor.",SECURITY,MEDIUM
+"My team lead shares one login between five people so we can avoid paying for more licences.",SECURITY,LOW
+"Someone has been tailgating through the side entrance in the evenings. I have seen the same unknown person twice.",SECURITY,HIGH
+"Encryption on the field tablets was turned off to make them faster.",SECURITY,MEDIUM
+"The firewall logs show repeated login attempts from abroad on the remote desktop server and nobody is looking at them.",SECURITY,HIGH
+"Visitor sign in sheet is just a notebook, anyone can walk in.",SECURITY,LOW
+"Former employees are still in the group chat where we share client passwords.",SECURITY,HIGH
+"The developers push code straight to production with the database root password in the config file. It is in the repository history too.",SECURITY,HIGH
+"Printed salary lists were left on the printer overnight.",SECURITY,LOW
+"I reported a broken lock on the records room last month. It was fixed last week, just noting it took a while.",SECURITY,LOW
+"Our ticketing tool exposes customer phone numbers to anyone with the link, no login needed.",SECURITY,HIGH
+"Managers ask us to email ID scans to their personal accounts to speed up onboarding.",SECURITY,MEDIUM
+"The alarm system at the warehouse has been switched off because it kept going off at night.",SECURITY,HIGH
+"Antivirus has been uninstalled on the design team machines because it slowed down rendering.",SECURITY,MEDIUM
+"The keys to the medicine store are left hanging by the door.",SECURITY,HIGH
+"We were told to ignore the security audit findings until after the quarter ends.",SECURITY,MEDIUM
+"Default passwords are still set on the office cameras and the router.",SECURITY,MEDIUM
+"Someone from another department logged into my account while I was on leave. I only found out from the login history.",SECURITY,HIGH
+"Leaked customer emails are being sold online and I think they came from our marketing list.",SECURITY,HIGH
+"Laptop got stolen from a car, not reported because the owner was afraid of being blamed.",SECURITY,MEDIUM
+"There is no screen lock policy and people walk away from unlocked machines all day.",SECURITY,LOW
+"The cloud storage bucket with scanned contracts is public.",SECURITY,HIGH
+"Fire exit at the back is used as a smoking door and left open, anyone could come in from the alley.",SECURITY,MEDIUM
+"An admin account named test with password test exists on the HR portal.",SECURITY,HIGH
+"Shredding bins are full and people are putting confidential papers in recycling instead.",SECURITY,LOW
+"Our app sends login codes over plain http.",SECURITY,MEDIUM
+"Staff share the master key card on a hook in the kitchen.",SECURITY,MEDIUM
+"The bank details change requests are approved over email with no call back check. We almost paid a fake supplier last week.",SECURITY,HIGH
+"Security guard on the night shift often leaves the gate unattended for hours.",SECURITY,MEDIUM
+"Developers copy production data with real customer names to their personal laptops for testing.",SECURITY,MEDIUM
+"Access cards are not collected when people leave. I know of at least three that still work.",SECURITY,MEDIUM
+"Webcam on the meeting room PC turns on by itself, I think it might be compromised.",SECURITY,MEDIUM
+"Someone keeps forwarding internal board documents to an outside address. It is happening right now, the last one was this morning.",SECURITY,HIGH
+"We have no process for revoking access when people change teams so everyone collects permissions over the years.",SECURITY,LOW
+"Ransomware note popped up on two machines in accounts today and IT told us to keep working.",SECURITY,HIGH
+"The password reset question for all staff accounts is the employee number.",SECURITY,MEDIUM
+"Delivery drivers are given the door code for the whole building.",SECURITY,LOW
+"Old phishing incident from last year was never investigated, but it seems nothing came of it.",SECURITY,LOW
+"Our VPN still uses a version with a known vulnerability. Patch was released months ago.",SECURITY,MEDIUM
+"The camera footage storage is accessible to all staff and people look at it for fun.",SECURITY,MEDIUM
+"Lab door with chemicals is unlocked at weekends.",SECURITY,HIGH
+"Someone set up a fake login page that looks like our intranet and sent it around internally. Several people entered passwords.",SECURITY,HIGH
+"Mailroom opens parcels addressed to the legal team and leaves them on a public table.",SECURITY,LOW
+"Customer card numbers are written down on paper at the front desk during phone orders.",SECURITY,MEDIUM
+"IT support asks for our passwords over the phone.",SECURITY,MEDIUM
+"After the office move the server cabinet is sitting in a corridor without a lock.",SECURITY,HIGH
+"My supervisor shouts at me in front of everyone almost every day.",HARASSMENT,MEDIUM
+"A senior colleague keeps touching my shoulders and back even after I asked him to stop. It happened again today.",HARASSMENT,HIGH
+"I get messages late at night from my manager commenting on my looks.",HARASSMENT,HIGH
+"People in my team make jokes about my accent in every meeting.",HARASSMENT,MEDIUM
+"I was told I would not get promoted because I plan to have children.",HARASSMENT,MEDIUM
+"Someone left a threatening note on my desk saying I should watch my back.",HARASSMENT,HIGH
+"The team excludes one new colleague from lunch and chats on purpose and laughs about it.",HARASSMENT,MEDIUM
+"My manager calls me stupid and useless when I make small mistakes.",HARASSMENT,MEDIUM
+"A client keeps asking me out and the account lead tells me to play along to keep the deal.",HARASSMENT,HIGH
+"There was an offensive cartoon about a religious group pinned in the break room. It has been taken down now.",HARASSMENT,LOW
+"I am followed to my car by a coworker after late shifts. He waits near the exit.",HARASSMENT,HIGH
+"My team lead keeps assigning me all the worst shifts since I complained about him.",HARASSMENT,MEDIUM
+"Comments about my weight from the supervisor, every single week.",HARASSMENT,MEDIUM
+"Older staff are being pushed out with constant remarks about being slow and out of date.",HARASSMENT,MEDIUM
+"In the group chat they share sexual memes and tag the women in the team.",HARASSMENT,MEDIUM
+"I was cornered in the storage room by a manager who tried to kiss me.",HARASSMENT,HIGH
+"They mock a colleague who uses a wheelchair, imitating him when he leaves the room.",HARASSMENT,MEDIUM
+"My boss threatened to fire me if I report what happened at the offsite.",HARASSMENT,HIGH
+"Someone keeps writing slurs on the bathroom wall on the second floor.",HARASSMENT,MEDIUM
+"I feel bullied by a peer who takes credit for my work and belittles me in reviews.",HARASSMENT,LOW
+"The night manager makes the female staff stay behind alone with him and says inappropriate things.",HARASSMENT,HIGH
+"There was one rude comment from a visitor last month, already handled by reception.",HARASSMENT,LOW
+"I am being called names because of my caste by two people in my department.",HARASSMENT,HIGH
+"Since I came out at work my manager refuses to talk to me directly and gives instructions through others.",HARASSMENT,MEDIUM
+"A colleague keeps sending me friend requests and messages on every social app even after I blocked him.",HARASSMENT,MEDIUM
+"My supervisor yells and throws things when targets are missed. Last week a stapler hit someone.",HARASSMENT,HIGH
+"New joiners are hazed with humiliating tasks as a tradition.",HARASSMENT,MEDIUM
+"I overheard a team lead say he will not hire anyone from a certain religion.",HARASSMENT,MEDIUM
+"Constant sarcasm and eye rolling when I speak in meetings. It is wearing me down.",HARASSMENT,LOW
+"A professor keeps asking students to his office alone and comments on their clothes.",HARASSMENT,HIGH
+"I am scared to come to work because of what my manager said about what happens to people who complain.",HARASSMENT,HIGH
+"Rumours are being spread about my private life by someone in payroll.",HARASSMENT,MEDIUM
+"My leave requests are always rejected since I refused to go for drinks with the boss.",HARASSMENT,MEDIUM
+"Someone posted my photo with insulting captions on an internal forum.",HARASSMENT,MEDIUM
+"A coworker made a racist joke at the holiday party. He apologised the next day.",HARASSMENT,LOW
+"The site supervisor pushes and shoves the younger workers.",HARASSMENT,HIGH
+"I keep getting anonymous messages telling me to quit or else.",HARASSMENT,HIGH
+"They call the only woman engineer sweetheart and ask her to make coffee for meetings.",HARASSMENT,MEDIUM
+"A manager screamed at a trainee until she cried, in front of customers.",HARASSMENT,MEDIUM
+"I was asked about my marital status and plans for kids in my appraisal.",HARASSMENT,LOW
+"My mentor touches my hand during one to one meetings and says it is just friendly.",HARASSMENT,MEDIUM
+"People leave pork in the fridge on my shelf as a joke because they know I do not eat it.",HARASSMENT,MEDIUM
+"A group of senior staff mock people with mental health leave, calling them weak.",HARASSMENT,MEDIUM
+"I was pushed against a wall during an argument in the warehouse yesterday.",HARASSMENT,HIGH
+"My supervisor keeps commenting that people like me are lazy, meaning my nationality.",HARASSMENT,MEDIUM
+"I want to report repeated unwanted hugs from a director. I have tried to avoid him but he finds me.",HARASSMENT,HIGH
+"The manager makes fun of my stutter and does impressions.",HARASSMENT,MEDIUM
+"A coach texts the junior players at midnight and asks them to keep it secret.",HARASSMENT,HIGH
+"My team keeps scheduling meetings during my prayer time on purpose.",HARASSMENT,LOW
+"I was told my hairstyle is unprofessional and to change it, only me and not others.",HARASSMENT,LOW
+"Someone has been photographing female staff in the changing area.",HARASSMENT,HIGH
+"Constant shouting on the production floor, not at one person, just the way the lead talks to everyone.",HARASSMENT,LOW
+"My colleague keeps asking intrusive questions about my medical condition in front of others.",HARASSMENT,LOW
+"He blocks the door when I try to leave the room and laughs.",HARASSMENT,HIGH
+"The landlord of the staff housing enters our rooms without notice and makes comments to the women.",HARASSMENT,HIGH
+"A supervisor threatened to report my visa status if I complained about unpaid hours.",HARASSMENT,HIGH
+"Sexual comments on my posts on the company social page by a manager.",HARASSMENT,MEDIUM
+"Bullying in my team has gone on for two years and HR keeps closing complaints without talking to us.",HARASSMENT,MEDIUM
+"The procurement head is getting a cut from the catering supplier on every order.",CORRUPTION,HIGH
+"Expense claims for dinners that never happened are being approved by the same manager who submits them.",CORRUPTION,MEDIUM
+"We were told to pay a fee in cash to the inspector to pass the safety check.",CORRUPTION,HIGH
+"The tender for the new building was given to the director's brother in law's company with no other bids.",CORRUPTION,HIGH
+"Invoices from a supplier that does not exist are being paid every month.",CORRUPTION,HIGH
+"My manager asks staff to pay him a part of their bonus.",CORRUPTION,HIGH
+"Overtime is recorded for people who were not even in the country.",CORRUPTION,MEDIUM
+"Grant money meant for research equipment was used to renovate an office.",CORRUPTION,MEDIUM
+"Clerks at the counter take a small payment to move files faster.",CORRUPTION,MEDIUM
+"The audit report was rewritten before it went to the board to hide missing stock.",CORRUPTION,HIGH
+"Someone in purchasing approves inflated quotes and gets gifts from the vendor at festival time.",CORRUPTION,MEDIUM
+"Company fuel cards are used for personal cars on weekends.",CORRUPTION,LOW
+"Exam papers are being sold to students by a staff member before the test date next week.",CORRUPTION,HIGH
+"A recruiter takes money from candidates to guarantee them a job.",CORRUPTION,HIGH
+"Donations collected for flood relief were never sent anywhere.",CORRUPTION,HIGH
+"The project manager bills clients for hours that the team did not work.",CORRUPTION,MEDIUM
+"Petty cash goes missing every month and the records are changed afterwards.",CORRUPTION,MEDIUM
+"A councillor pushed through a permit for a site his family owns.",CORRUPTION,MEDIUM
+"We were asked to backdate contracts so that they fall in last year's budget.",CORRUPTION,MEDIUM
+"Construction materials are delivered short but signed off as complete. The difference is sold on.",CORRUPTION,HIGH
+"Ghost employees on the payroll, I counted at least six names nobody has ever seen.",CORRUPTION,HIGH
+"Hiring was rigged so the department head's nephew got the job.",CORRUPTION,MEDIUM
+"The sales team offers kickbacks to hospital buyers to choose our devices.",CORRUPTION,HIGH
+"Inventory write offs are being used to cover stock that was taken home.",CORRUPTION,MEDIUM
+"A supervisor charges workers a fee to be put on the better shifts.",CORRUPTION,MEDIUM
+"The board approved a consulting contract with a firm owned by one of the board members.",CORRUPTION,MEDIUM
+"Travel claims include first class tickets but people flew economy.",CORRUPTION,LOW
+"Someone in accounts changed vendor bank details to a personal account and money is still going out.",CORRUPTION,HIGH
+"The scholarship committee picks students whose parents donate to the school.",CORRUPTION,MEDIUM
+"Quality reports are signed without inspection in exchange for lunch from the contractor.",CORRUPTION,MEDIUM
+"A police officer at the checkpoint near the site takes money from our drivers every day.",CORRUPTION,HIGH
+"Our branch manager offers loans faster to people who pay him personally.",CORRUPTION,HIGH
+"Sales numbers are inflated at quarter end by booking fake orders that get cancelled later.",CORRUPTION,MEDIUM
+"Old case: a manager took bribes in 2019 but he left the company and it was reported then.",CORRUPTION,LOW
+"Medicines bought for the free clinic are being sold at a private pharmacy.",CORRUPTION,HIGH
+"Bid documents are shared with one vendor in advance.",CORRUPTION,HIGH
+"The canteen contract renewed again for the same vendor despite complaints, and the admin head eats free there.",CORRUPTION,LOW
+"Training sessions are billed but never held. Attendance sheets are signed in bulk later.",CORRUPTION,MEDIUM
+"Company phones are given to the manager's family members.",CORRUPTION,LOW
+"Land records were altered at the office so a builder could claim the plot.",CORRUPTION,HIGH
+"Our team lead marks his friends present when they are absent and they split the extra allowance.",CORRUPTION,MEDIUM
+"Union funds are being spent on trips for the committee.",CORRUPTION,MEDIUM
+"Fake receipts from a printing shop are submitted every month for flyers that were never printed.",CORRUPTION,MEDIUM
+"A minister's office asked for a donation before releasing our pending payment.",CORRUPTION,HIGH
+"The warehouse manager sells scrap metal and keeps the money.",CORRUPTION,MEDIUM
+"An evaluator gave top marks to a proposal after the vendor paid for his holiday.",CORRUPTION,HIGH
+"Reimbursements for a conference that was cancelled were still paid out.",CORRUPTION,LOW
+"Water tanker payments are made for deliveries that never reach the village.",CORRUPTION,HIGH
+"Price quotes from three suppliers are all written by the same person.",CORRUPTION,MEDIUM
+"Audit trail was deleted on the finance system the night before the auditors came.",CORRUPTION,HIGH
+"Doctors refer patients to a lab that pays them commission.",CORRUPTION,MEDIUM
+"Staff were told to vote a certain way in the union election or lose overtime.",CORRUPTION,MEDIUM
+"Asset register shows laptops that were never bought.",CORRUPTION,MEDIUM
+"The housing allotment list was changed to put connected people at the top.",CORRUPTION,MEDIUM
+"My manager signs off his own timesheets and claims weekend work he never does.",CORRUPTION,LOW
+"Cash from the parking fees is not deposited fully. I have seen the counts.",CORRUPTION,MEDIUM
+"Fines are waived for businesses that pay the officer directly.",CORRUPTION,HIGH
+"Our payroll system has been down since this morning and salaries are due tomorrow.",TECHNICAL,HIGH
+"Nightly backups have been failing silently for three weeks.",TECHNICAL,HIGH
+"The website crashes whenever more than fifty people log in.",TECHNICAL,MEDIUM
+"Printer on floor two jams every day.",TECHNICAL,LOW
+"Database disk is at 98 percent and nobody is responding to the alerts.",TECHNICAL,HIGH
+"The new billing release charges some customers twice.",TECHNICAL,HIGH
+"Email to external addresses is delayed by hours.",TECHNICAL,MEDIUM
+"Our monitoring dashboard has been showing green for a service that is clearly down.",TECHNICAL,MEDIUM
+"The app logs out users every five minutes on Android.",TECHNICAL,MEDIUM
+"Sensor readings on the cold storage unit stopped updating, vaccines may be at risk.",TECHNICAL,HIGH
+"Meeting room screens do not connect to laptops half the time.",TECHNICAL,LOW
+"The release process has no rollback, every bad deploy needs a manual fix at night.",TECHNICAL,MEDIUM
+"Customer orders from the weekend are missing from the system.",TECHNICAL,HIGH
+"The exam portal times out when students upload answers, the exam is on Friday.",TECHNICAL,HIGH
+"Laptops for new joiners take two weeks to arrive and set up.",TECHNICAL,LOW
+"Our servers are running an operating system that lost support last year.",TECHNICAL,MEDIUM
+"The data sync between the clinics and the central system drops records.",TECHNICAL,HIGH
+"Slow wifi in the east wing.",TECHNICAL,LOW
+"The phone lines for the helpdesk go dead after 6 pm.",TECHNICAL,MEDIUM
+"A bug in the timesheet tool rounds everyone's hours down.",TECHNICAL,MEDIUM
+"The production line software freezes and the machines keep running without control.",TECHNICAL,HIGH
+"The test environment uses the same database as production by mistake.",TECHNICAL,HIGH
+"VPN disconnects every hour for remote staff.",TECHNICAL,MEDIUM
+"The air conditioning in the server room failed last night, temperature is rising.",TECHNICAL,HIGH
+"Reports export to Excel with broken characters for non English names.",TECHNICAL,LOW
+"Our backup generator was never tested and failed during the last power cut. It was fixed afterwards.",TECHNICAL,LOW
+"Pharmacy stock system shows wrong quantities after the update.",TECHNICAL,HIGH
+"The website certificate expires in two days and nobody owns renewing it.",TECHNICAL,HIGH
+"Ticketing queue is full of duplicates because the form submits twice.",TECHNICAL,LOW
+"Login to the student portal fails for anyone with an apostrophe in their surname.",TECHNICAL,MEDIUM
+"Elevator control panel shows errors and the lift stops between floors.",TECHNICAL,HIGH
+"Our software licences expired and half the team cannot open design files.",TECHNICAL,MEDIUM
+"Logs are not kept long enough to investigate incidents.",TECHNICAL,LOW
+"The ATM in the lobby gives wrong balances.",TECHNICAL,MEDIUM
+"Scheduled jobs run twice after the clocks changed.",TECHNICAL,MEDIUM
+"Customer support chat widget has been broken on mobile for a month.",TECHNICAL,LOW
+"The fire alarm panel shows a fault on floor five and the alarm did not sound in the test.",TECHNICAL,HIGH
+"Old code nobody understands handles all the refunds and it breaks every few weeks.",TECHNICAL,MEDIUM
+"The HR system lost leave balances after migration.",TECHNICAL,MEDIUM
+"Our main database has no replica, if that one disk dies we lose everything.",TECHNICAL,MEDIUM
+"Shared drive keeps going read only.",TECHNICAL,LOW
+"The traffic light controller near the plant gate is stuck on green both ways.",TECHNICAL,HIGH
+"Monitors flicker in the accounts office, it gives people headaches.",TECHNICAL,LOW
+"Patient appointment reminders go to the wrong phone numbers since the update.",TECHNICAL,HIGH
+"Batch payments to farmers failed and nobody has retried them.",TECHNICAL,HIGH
+"Upload size limit on the portal is too small for scanned documents.",TECHNICAL,LOW
+"Every Monday the reporting server needs a restart or reports are blank.",TECHNICAL,MEDIUM
+"The barcode scanners in the warehouse misread labels and stock goes to wrong shelves.",TECHNICAL,MEDIUM
+"Video calls drop constantly from the branch office.",TECHNICAL,LOW
+"After the update the dosage calculator in the ward app shows values ten times too high.",TECHNICAL,HIGH
+"Our build pipeline has been red for a week and people are deploying from their laptops.",TECHNICAL,MEDIUM
+"Website search returns nothing for half the products.",TECHNICAL,LOW
+"Water pump control system keeps resetting and the tank overflowed twice.",TECHNICAL,MEDIUM
+"The time clock machine at the gate records wrong times.",TECHNICAL,MEDIUM
+"Password reset emails never arrive.",TECHNICAL,MEDIUM
+"A migration script deleted archived invoices. We restored most but not all.",TECHNICAL,MEDIUM
+"Kitchen display system in the restaurant goes blank during rush hours.",TECHNICAL,MEDIUM
+"Disk space warnings on the mail server ignored for a month.",TECHNICAL,MEDIUM
+"Small typo in the public notice board app, already fixed but wanted to mention it.",TECHNICAL,LOW
+"The loading dock floor is cracked and someone will trip.",OTHER,MEDIUM
+"Canteen food has been undercooked twice this week and people got sick.",OTHER,HIGH
+"There are no women's toilets on the factory floor.",OTHER,MEDIUM
+"Our office throws away huge amounts of plastic, could we start recycling.",OTHER,LOW
+"Chemicals are being dumped into the stream behind the plant at night.",OTHER,HIGH
+"The emergency exit is blocked by stacked boxes.",OTHER,HIGH
+"Drinking water at the site tastes strange and is cloudy.",OTHER,HIGH
+"Parking is a mess and people block each other in.",OTHER,LOW
+"Workers on the roof are not given harnesses.",OTHER,HIGH
+"I think the new policy on remote work is unfair to parents.",OTHER,LOW
+"The manager uses the company van to move his furniture at weekends.",OTHER,LOW
+"Staff are asked to work twelve hour shifts without breaks during the busy season.",OTHER,MEDIUM
+"Mould on the walls in the staff housing.",OTHER,MEDIUM
+"Nobody explained the new expense rules and people are confused.",OTHER,LOW
+"Overtime pay is three months late.",OTHER,MEDIUM
+"A colleague seems very depressed and talked about not wanting to be here anymore.",OTHER,HIGH
+"The office is freezing because the heating is set too low.",OTHER,LOW
+"Children are working at the subcontractor's site, I saw them carrying bricks.",OTHER,HIGH
+"Lost property box is never checked, my bag has been there for weeks.",OTHER,LOW
+"Our team lead keeps changing the rota at the last minute and people miss family events.",OTHER,LOW
+"Forklift drivers are not trained or licensed.",OTHER,HIGH
+"There is asbestos in the old wing that is being drilled into without protection.",OTHER,HIGH
+"The suggestion box has not been opened in a year.",OTHER,LOW
+"Contract workers are not given the safety boots the permanent staff get.",OTHER,MEDIUM
+"Smoke from the kitchen fills the corridor every afternoon.",OTHER,MEDIUM
+"The company keeps passports of foreign workers locked in the office.",OTHER,HIGH
+"Some people take very long lunch breaks while others cover for them.",OTHER,LOW
+"Rats in the storage area near the food supplies.",OTHER,MEDIUM
+"The new seating plan puts the noisy sales team next to people who need quiet.",OTHER,LOW
+"Patients wait on the floor in the emergency ward because there are not enough beds.",OTHER,HIGH
+"Our manager leaves early every day and nobody can approve anything.",OTHER,LOW
+"Uniforms are deducted from salary even though the policy says they are free.",OTHER,MEDIUM
+"Electrical wires hang loose above the washing area.",OTHER,HIGH
+"The training budget is only spent on managers.",OTHER,LOW
+"Waste from the hospital is put in the normal city bins.",OTHER,HIGH
+"Cleaners are not allowed to use the staff room.",OTHER,MEDIUM
+"I want to suggest flexible start times for people who commute far.",OTHER,LOW
+"The school bus has no seat belts and the driver uses his phone while driving.",OTHER,HIGH
+"Noise from the machines is very loud and nobody wears ear protection.",OTHER,MEDIUM
+"Interns work full time with no pay for six months.",OTHER,MEDIUM
+"My manager reads personal emails over my shoulder, it feels intrusive.",OTHER,LOW
+"Someone keeps taking food from the shared fridge.",OTHER,LOW
+"Heat in the warehouse goes above 40 degrees and there is no water station.",OTHER,HIGH
+"Gas smell near the boiler room since yesterday.",OTHER,HIGH
+"Staff meetings are only held in English though half the workers do not speak it.",OTHER,LOW
+"Wage slips are not given to daily workers so they cannot check what they are paid.",OTHER,MEDIUM
+"The pharmacy sells expired medicines with new labels.",OTHER,HIGH
+"Promotions seem to go to people who socialise with the boss after work.",OTHER,LOW
+"Animals at the shelter are left without food over the weekends.",OTHER,HIGH
+"The handrail on the main staircase is broken.",OTHER,MEDIUM
+"My contract says one thing and my actual duties are completely different.",OTHER,LOW
+"Night shift workers walk to the bus stop on an unlit road.",OTHER,MEDIUM
+"The company announced layoffs on a group chat with no notice.",OTHER,MEDIUM
+"Volunteers handle cash without any receipts, it is messy but I do not think anyone is stealing.",OTHER,LOW
+"Fire drill has not happened in three years.",OTHER,MEDIUM
+"The first aid kit is empty.",OTHER,MEDIUM
+"A teacher hits students with a ruler when they talk in class.",OTHER,HIGH
+"I was asked to sign a document saying I received training I never got.",OTHER,MEDIUM
+"Pregnant workers are still assigned to lift heavy loads.",OTHER,HIGH
+"Small thing, but the office manager keeps the free conference bags and sells them later. It is not much money.",CORRUPTION,LOW
+"I am not sure this counts, but a vendor paid for our whole team's dinner right before the contract renewal. Nobody declared it.",CORRUPTION,LOW
+"Our regional head approved a road repair contract, the road was never repaired and the money is gone. People drive around potholes every day and I think someone will get hurt. I have photos of the same road from before and after the supposed work.",CORRUPTION,HIGH
+"I was called a drama queen by my manager when I raised a concern. Once, not a pattern, but it stayed with me.",HARASSMENT,LOW
+"For months a senior colleague has been sending me long messages about how I owe him for helping me get this job, and he hints that I should repay him in ways I am not comfortable with. I tried to keep my distance, changed my desk and my shift, and he still turns up. I do not know who else to tell.",HARASSMENT,HIGH
+"The shared calendar shows everyone's private appointments, including doctor visits.",TECHNICAL,LOW
+"A supplier sent everyone in the office expensive sweets and gift hampers for the festival. Is that allowed?",OTHER,LOW

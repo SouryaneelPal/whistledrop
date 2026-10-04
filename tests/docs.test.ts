@@ -20,6 +20,7 @@ it('serves Swagger UI with a spec that documents every operation', async () => {
       'GET /health',
       'POST /api/reports',
       'GET /api/reports/status',
+      'POST /api/reports/check',
       'POST /api/moderator/login',
       'GET /api/moderator/reports',
       'GET /api/moderator/reports/{id}',

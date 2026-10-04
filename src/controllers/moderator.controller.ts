@@ -2,6 +2,7 @@ import { Report, StatusUpdate } from '@prisma/client';
 import { Request, Response } from 'express';
 import { authenticate } from '../services/moderator.service';
 import { addNote, changeStatus, findReport, findReports } from '../services/report.service';
+import { triageReports } from '../services/triage.service';
 import { AppError } from '../utils/AppError';
 import { ListQuery } from '../validators/moderator.schema';
 
@@ -10,12 +11,13 @@ type UpdateRow = Pick<StatusUpdate, 'status' | 'message' | 'createdAt'>;
 type SummaryRow = Pick<Report, 'id' | 'category' | 'status' | 'description' | 'createdAt' | 'updatedAt'>;
 type AuditedUpdateRow = UpdateRow & { moderator: { username: string } | null };
 type DetailRow = SummaryRow & Pick<Report, 'evidenceUrl'> & { updates: AuditedUpdateRow[] };
+type Triage = Awaited<ReturnType<typeof triageReports>>[number];
 
 function toUpdate(update: UpdateRow) {
   return { status: update.status, message: update.message, createdAt: update.createdAt };
 }
 
-function toSummary(report: SummaryRow) {
+function toSummary(report: SummaryRow, triage: Triage) {
   return {
     id: report.id,
     category: report.category,
@@ -23,10 +25,11 @@ function toSummary(report: SummaryRow) {
     descriptionPreview: report.description.slice(0, 120),
     createdAt: report.createdAt,
     updatedAt: report.updatedAt,
+    triage,
   };
 }
 
-function toDetail(report: DetailRow) {
+function toDetail(report: DetailRow, triage: Triage) {
   return {
     id: report.id,
     category: report.category,
@@ -36,6 +39,7 @@ function toDetail(report: DetailRow) {
     createdAt: report.createdAt,
     updatedAt: report.updatedAt,
     updates: report.updates.map((update) => ({ ...toUpdate(update), by: update.moderator?.username ?? null })),
+    triage,
   };
 }
 
@@ -48,15 +52,17 @@ export async function login(req: Request, res: Response) {
 export async function listReports(_req: Request, res: Response) {
   const query: ListQuery = res.locals.query;
   const { reports, total } = await findReports(query);
+  const triage = await triageReports(reports);
 
-  res.json({ data: reports.map(toSummary), page: query.page, limit: query.limit, total });
+  res.json({ data: reports.map((report, i) => toSummary(report, triage[i])), page: query.page, limit: query.limit, total });
 }
 
 export async function getReport(req: Request<{ id: string }>, res: Response) {
   const report = await findReport(req.params.id);
   if (!report) throw new AppError(404, 'REPORT_NOT_FOUND', 'Report not found');
 
-  res.json(toDetail(report));
+  const [triage] = await triageReports([report]);
+  res.json(toDetail(report, triage));
 }
 
 export async function updateStatus(req: Request<{ id: string }>, res: Response) {

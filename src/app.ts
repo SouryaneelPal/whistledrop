@@ -8,9 +8,8 @@ import docsRoutes from './routes/docs.routes';
 
 const app = express();
 
-// Behind a hosting proxy every request seems to come from the proxy's IP, so the rate limiters
-// would throttle all users as one. Trusting more hops than really exist lets a client fake
-// X-Forwarded-For to dodge the limits, so set this to the exact number of proxies in front.
+// Behind a proxy every request seems to come from the proxy's IP, so limits would hit all users as one.
+// Set this to the exact number of proxies: trusting more lets clients fake X-Forwarded-For.
 if (env.TRUST_PROXY > 0) app.set('trust proxy', env.TRUST_PROXY);
 
 app.use(helmet());

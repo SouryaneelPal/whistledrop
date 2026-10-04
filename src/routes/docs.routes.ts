@@ -9,9 +9,8 @@ const spec = YAML.load(path.join(__dirname, '../docs/openapi.yaml'));
 
 const router = Router();
 
-// Served over plain http from anything but localhost, upgrade-insecure-requests makes the
-// browser fetch Swagger UI's own scripts and styles over https, which fails and leaves a blank
-// page. Only that directive is dropped, and only here; the rest of the API keeps the default.
+// Over plain http (not localhost), upgrade-insecure-requests makes Swagger UI load its assets over
+// https and fail. Only that directive is dropped, and only here.
 router.use(helmet({ contentSecurityPolicy: { directives: { upgradeInsecureRequests: null } } }));
 router.use(swaggerUi.serve);
 router.get('/', swaggerUi.setup(spec));

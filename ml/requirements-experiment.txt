@@ -1,0 +1,4 @@
+# Only for embeddings_experiment.py; train.py and the shipped models need ml/requirements.txt alone.
+-r requirements.txt
+sentence-transformers==6.1.0
+torch==2.14.1

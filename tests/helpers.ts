@@ -7,9 +7,8 @@ import { env } from '../src/config/env';
 import { prisma } from '../src/db';
 import { hashCaseCode, normalizeCaseCode } from '../src/services/caseCode.service';
 
-// Left to itself, SuperTest listens on the IPv6 wildcard but connects to 127.0.0.1. On macOS
-// another process can own 127.0.0.1 on that same port and would receive the request instead,
-// so tests/setup.ts binds this server to 127.0.0.1 explicitly.
+// SuperTest alone listens on the IPv6 wildcard but connects to 127.0.0.1, where on macOS another
+// process can own the same port. tests/setup.ts binds this server to 127.0.0.1 instead.
 export const server = http.createServer(app);
 export const api = request(server);
 

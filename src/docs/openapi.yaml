@@ -603,22 +603,27 @@ components:
     Triage:
       type: object
       description: >
-        Category suggestion from a small local model, computed when the report is
-        read and never stored. Moderators only; reporters never see it. When the
-        model is not confident enough, suggestedCategory is null and reason says why.
+        Category suggestion from a small local model. Moderators only; reporters
+        never see it. It is computed when the report is read and never written to
+        the database; embedding results are cached in memory by report id. Each
+        model has its own confidence threshold. Below it, suggestedCategory is null
+        and reason is "low confidence", for example
+        `{ "model": "embeddings", "suggestedCategory": null, "reason": "low confidence", "confidence": 0.31, "topTerms": [] }`.
       properties:
         model:
           type: string
           enum: [embeddings, tfidf]
           description: >
             Which model made the suggestion. The server uses sentence embeddings once
-            they have loaded and falls back to TF-IDF while they load, if they fail,
-            or when embeddings are switched off.
+            they have loaded, and TF-IDF while they load, if they fail, when they are
+            switched off, or for the reports left after the request's time budget runs out.
           example: embeddings
         suggestedCategory:
           allOf:
             - $ref: "#/components/schemas/Category"
           nullable: true
+          description: The most likely category, or null when the model is not confident enough
+          example: HARASSMENT
         reason:
           type: string
           nullable: true
@@ -629,7 +634,7 @@ components:
           minimum: 0
           maximum: 1
           description: Probability of the most likely category, shown even when no category is suggested
-          example: 0.41
+          example: 0.911
         topTerms:
           type: array
           maxItems: 3
@@ -640,6 +645,12 @@ components:
           items:
             type: string
           example: []
+      example:
+        model: embeddings
+        suggestedCategory: HARASSMENT
+        reason: null
+        confidence: 0.911
+        topTerms: []
     LeakCheckRequest:
       type: object
       additionalProperties: false

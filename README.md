@@ -236,6 +236,8 @@ curl "http://localhost:4000/api/moderator/reports?category=SECURITY&q=README&lim
 }
 ```
 
+On the current version, each report in this list also includes a `triage` object with the AI category suggestion; see [AI features](#ai-features).
+
 ### 5. Move the report to UNDER_REVIEW with a message
 
 ```bash

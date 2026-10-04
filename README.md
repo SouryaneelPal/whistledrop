@@ -352,6 +352,10 @@ Moderators see a suggested category, with a confidence, on each report. Reporter
 | TF-IDF + logistic regression | 0.557 ± 0.044 | 0.558 ± 0.042 |
 | MiniLM sentence embeddings + logistic regression (shipped) | 0.823 ± 0.023 | 0.820 ± 0.025 |
 
+**Live example:** a report filed as OTHER that describes a manager's comments and late-night messages. The model suggests HARASSMENT with 0.911 confidence:
+
+![AI triage suggesting HARASSMENT for a report filed as OTHER](docs/screenshots/14-ai-triage.png)
+
 - **How it runs:** the embedding model is a quantised ONNX version of all-MiniLM-L6-v2, run inside Node with transformers.js, so there is no Python at runtime. The model is downloaded at build time, never at runtime. The quantised version scores the same as the original (0.823 vs 0.833) and uses about 240 MB of memory in total.
 - **Only confident suggestions:** a suggestion is shown only when the model is confident enough. I chose the threshold from cross-validation predictions with a fixed rule. For the embedding model that is 0.375: 78% of reports get a suggestion, and 90.6% of those are right. Below it, moderators see no category, with the reason "low confidence" and the confidence.
 - **Fallback:** if the embedding model is still loading, missing or switched off, the TF-IDF model is used instead. Each suggestion says which model produced it.

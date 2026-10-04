@@ -10,6 +10,7 @@ Even rate limiting needed thought: it has to recognise repeat clients without st
 
 ## Contents
 
+- [Architecture](#architecture)
 - [Setup](#setup)
 - [API endpoints](#api-endpoints)
 - [How anonymity is maintained](#how-anonymity-is-maintained)
@@ -20,6 +21,14 @@ Even rate limiting needed thought: it has to recognise repeat clients without st
 - [Screenshots](#screenshots)
 - [Deployment](#deployment)
 - [Future work](#future-work)
+
+## Architecture
+
+How a request flows through the code: routes apply rate limits and validation, controllers hand off to services, and services talk to the database. Moderator routes are protected by token checks. Report text goes to the identity-leak check (for reporters) and the category triage (for moderators); triage uses the embedding model and falls back to the TF-IDF model, which isn't drawn here.
+
+![WhistleDrop architecture](docs/architecture.png)
+
+*Diagram generated from this repository with [GitDiagram](https://gitdiagram.com), then checked against the code.*
 
 ## Setup
 

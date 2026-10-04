@@ -28,7 +28,7 @@ How a request flows through the code: routes apply rate limits and validation, c
 
 ![WhistleDrop architecture](docs/architecture.png)
 
-*Diagram generated from this repository with [GitDiagram](https://gitdiagram.com), then checked against the code.*
+Diagram generated from this repository with [GitDiagram](https://gitdiagram.com), then checked against the code.
 
 ## Setup
 
